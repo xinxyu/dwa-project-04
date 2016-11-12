@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var route = window.location.pathname.replace("/","");
 
-    if(route) {
-        $("#" + route + "-nav-item").addClass("active");
+    if(route =="boards") {
+        $("board-nav-item").addClass("active");
     }
 });

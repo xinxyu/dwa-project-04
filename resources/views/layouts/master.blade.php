@@ -9,9 +9,6 @@
         @yield('title', 'Retro Board')
     </title>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}"/>
@@ -38,8 +35,8 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li id="text-generator-nav-item"><a href="/text-generator">Login</a></li>
-                    <li id="board-nav-item"><a href="/board">Create Board</a></li>
+                    <li id="text-generator-nav-item"><a href="/login">Login</a></li>
+                    <li id="board-nav-item"><a href="/boards/create">Create Board</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

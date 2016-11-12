@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/board/{board}', function ($board) {
+Route::get('/boards/{board}', function ($board) {
     $title=$board;
     $section1 = "what went well";
     $section2 = "what needs improvement";
@@ -30,11 +30,11 @@ Route::get('/board/{board}', function ($board) {
         "section3"=>$section3,
         "section4"=>$section4
     ]);
-});
+})->name('boards.show');
 
-Route::get('/board', function () {
+Route::get('/boards/create', function () {
     return view('/board/create');
-});
+})->name('boards.create');
 
 Route::get('/login', function () {
     return "Login Page";
