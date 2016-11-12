@@ -12,5 +12,23 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages/home');
 });
+
+Route::get('/login', function () {
+    return "Login Page";
+});
+
+Route::get('/logout', function () {
+    return "Logout Page";
+});
+
+Route::get('/board/{board}', function ($board) {
+    return "Bord number ".$board;
+});
+
+Route::get('/board', function () {
+    return view('/board/create');
+});
+
+
