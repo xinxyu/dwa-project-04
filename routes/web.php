@@ -11,31 +11,14 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('pages/home');
 });
 
-
-
-Route::get('/boards/{board}', function ($board) {
-    $title=$board;
-    $section1 = "what went well";
-    $section2 = "what needs improvement";
-    $section3 = "action items";
-    $section4 = "other";
-    return view('/board/show')->with([
-        "title" =>$title,
-        "section1"=>$section1,
-        "section2"=>$section2,
-        "section3"=>$section3,
-        "section4"=>$section4
-    ]);
-})->name('boards.show');
-
-Route::get('/boards/create', function () {
-    return view('/board/create');
-})->name('boards.create');
-
+/*
+ * Authentication Routes
+ */
 Route::get('/login', function () {
     return "Login Page";
 });
@@ -43,4 +26,13 @@ Route::get('/login', function () {
 Route::get('/logout', function () {
     return "Logout Page";
 });
+
+/*
+ * Board Routes
+ */
+Route::get('/boards/create', 'BoardController@create')->name('boards.create');
+Route::get('/boards/{board}', 'BoardController@show')->name('boards.show');
+
+
+
 
