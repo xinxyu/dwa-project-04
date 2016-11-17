@@ -3,13 +3,13 @@ var app = angular.module('retroBoardApp', [], function($interpolateProvider) {
     $interpolateProvider.endSymbol(']]');
 });
 
-app.directive('myEnter', function () {
+app.directive('ngEnter', function () {
     return function (scope, element, attrs) {
         element.bind("keyup", function (event) {
             if(event.which === 13) {
                 event.preventDefault();
                 scope.$apply(function (){
-                    scope.$eval(attrs.myEnter);
+                    scope.$eval(attrs.ngEnter);
                 });
 
 

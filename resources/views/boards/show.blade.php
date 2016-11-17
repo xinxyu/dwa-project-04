@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="note"  ng-model="noteInputs[ [[$index]] ]" my-enter="addNote([[$index]])">
+                    <input type="text" class="form-control" placeholder="note"  ng-model="noteInputs[ [[$index]] ]" ng-enter="addNote([[$index]])">
                     <span class="input-group-btn">
                             <button title="Add Note" class="btn btn-success" type="button"
                                     ng-click="addNote([[$index]])" >
