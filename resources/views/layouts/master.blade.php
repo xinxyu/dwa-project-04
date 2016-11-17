@@ -16,11 +16,13 @@
 
     <!-- Javascript -->
     <script rel="text/javascript" src="{{ asset('js/jquery.min.js')}}"></script>
+    <script rel="text/javascript" src="{{ asset('js/angular.min.js')}}"></script>
     <script rel="text/javascript" src="{{ asset('js/bootstrap.min.js')}}"></script>
+    <script rel="text/javascript" src="{{ asset('js/nav.js')}}"></script>
     <script rel="text/javascript" src="{{ asset('js/main.js')}}"></script>
     @yield('headContent')
 </head>
-<body>
+<body ng-app="retroBoardApp">
 <header>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">

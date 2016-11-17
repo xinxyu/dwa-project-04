@@ -31,7 +31,7 @@ Route::get('/logout', function () {
  * Board Routes
  */
 Route::get('/boards/create', 'BoardController@create')->name('boards.create');
-Route::get('/boards/{board}', 'BoardController@show')->name('boards.show');
+Route::get('/boards/{boards}', 'BoardController@show')->name('boards.show');
 
 
 
