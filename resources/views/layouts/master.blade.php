@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <base href="/">
     <title>
         @yield('title', 'Retro Board')
     </title>
@@ -22,7 +23,7 @@
     <script rel="text/javascript" src="{{ asset('js/main.js')}}"></script>
     @yield('headContent')
 </head>
-<body ng-app="retroBoardApp">
+<body data-ng-app="retroBoardApp">
 <header>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -33,12 +34,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">Retro Board</a>
+                <a class="navbar-brand" href="/" target="_self">Retro Board</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li id="text-generator-nav-item"><a href="/login">Login</a></li>
-                    <li id="board-nav-item"><a href="/boards/create">Create Board</a></li>
+                    <li id="text-generator-nav-item"><a href="/login" target="_self">Login</a></li>
+                    <li id="board-nav-item"><a href="/boards/create" target="_self">Create Board</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

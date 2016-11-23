@@ -31,7 +31,17 @@ Route::get('/logout', function () {
  * Board Routes
  */
 Route::get('/boards/create', 'BoardController@create')->name('boards.create');
-Route::get('/boards/{boards}', 'BoardController@show')->name('boards.show');
+Route::post('/boards/store', 'BoardController@store')->name('boards.store');
+Route::get('/boards/{boards}.json', 'BoardController@show')->name('boards.show');
+Route::get('/boards/{boards}', 'BoardController@showHTML')->name('boards.showHTML');
+
+/*
+ * Note Routes
+ */
+
+Route::post('/notes/store.json', 'NoteController@store')->name('notes.store');
+Route::post('/notes/destroy/{note}', 'NoteController@destroy')->name('notes.store');
+
 
 
 

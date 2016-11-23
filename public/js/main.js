@@ -1,7 +1,12 @@
-var app = angular.module('retroBoardApp', [], function($interpolateProvider) {
+
+var app = angular.module('retroBoardApp', []).config( function($interpolateProvider,$locationProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
+    $locationProvider.html5Mode(true);
 });
+
+
+
 
 app.directive('ngEnter', function () {
     return function (scope, element, attrs) {
@@ -18,32 +23,51 @@ app.directive('ngEnter', function () {
     };
 });
 
-app.controller('boardCtrl', function($scope) {
-    $scope.title = "Test Board";
-    $scope.sections = [
-        {"name":"What Went Well","notes": ["note2","hello"]},
-        {"name":"What Needs Improvement","notes": ["note3","note4","hi"]},
-        {"name":"Action Items","notes": ["note5","sample text"]},
-        {"name":"Other","notes": ["note6","note7","note8"]}
-    ];
-
+app.controller('boardCtrl', function($scope,$http,$location,$window,$interval) {
+    $scope.board = {};
+    $scope.sections = [];
     $scope.noteInputs = [];
+    $scope.token = "";
 
+    $scope.loadBoard = function(){
+        $http.get($location.path()+".json")
+            .then(function(response) {
+                $scope.board = response.data.board;
+                $scope.sections = response.data.sections;
+        });
+    };
 
     $scope.getRows = function() {
-        return Array(parseInt(($scope.sections.length+1)/2))
+        return Array(parseInt(($scope.sections.length+1)/2));
     }
 
-    $scope.addNote = function(index){
-        if($scope.noteInputs[index]) {
-            $scope.sections[index].notes.push($scope.noteInputs[index]);
-        }
-        $scope.noteInputs[index] = "";
+    $scope.addNote = function(sectionIndex){
+        $http.post("notes/store.json",
+            {"section_id":$scope.sections[sectionIndex].id,
+                "message": $scope.noteInputs[sectionIndex]})
+            .then(function(response) {
+                $scope.loadBoard();
+            });
+
+        // clear input field
+        $scope.noteInputs[sectionIndex] = "";
+        return;
     }
+
     $scope.deleteNote = function(sectionIndex,messageIndex){
         if (messageIndex > -1 && sectionIndex > -1) {
-            $scope.sections[sectionIndex].notes.splice(messageIndex,1);
-        }
+            var note = $scope.sections[sectionIndex].notes[messageIndex];
+            if(note){
+                $http.post("notes/destroy/"+note.id)
+                    .then(function(response) {
+                        $scope.loadBoard();
+                    });
+            }
 
+        }
+        return;
     }
+
+    $interval(function(){$scope.loadBoard();},20000);
+
 });
