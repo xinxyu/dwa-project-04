@@ -13,7 +13,7 @@
         <div class="col-md-4 col-xs-12 col-md-offset-2 text-left">
             <span class="text-danger">*</span><small id="boardTitleHelp" class="form-text text-left"> fields are required</small>
         </div><br/><br/>
-        <form class="text-left" method="post" action="/boards/store">
+        <form class="text-left" method="post" action="/boards">
             {{ csrf_field() }}
             <div class="form-group col-md-8 col-xs-12 col-md-offset-2">
                 <label for="boardTitle">Title</label><span class="text-danger">*</span>

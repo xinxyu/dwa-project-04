@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Note extends Model
 {
-    public function sections(){
+    public function section(){
 
         return $this->belongsTo('App\Section');
 

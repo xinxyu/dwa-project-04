@@ -11,9 +11,23 @@ class Section extends Model
         return $this->belongsTo('App\Board');
     }
 
-    public function sections(){
+    public function notes(){
 
         return $this->hasMany('App\Note');
 
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        // Attach event handler, on deleting of the section
+        Section::deleting(function($sections)
+        {
+            // Delete all notes that belong to this section
+            foreach ($sections->notes as $note) {
+                $note->delete();
+            }
+        });
     }
 }

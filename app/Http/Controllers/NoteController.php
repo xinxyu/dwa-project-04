@@ -23,12 +23,12 @@ class NoteController extends Controller
             $note->message = $request->json("message");
             $note->section_id = $request->json("section_id");
             $note->save();
-            return '{"status":"success"}';
+            return response()->json(["status"=>"success"]);
         }
         catch (Exception $exception){
 
             return response()->json([
-                'message' => 'Error saving note',
+                'status' => 'Error saving note',
             ], 500);
         }
 
@@ -47,12 +47,12 @@ class NoteController extends Controller
         {
             $note = Note::find($id);
             $note->delete();
-            return '{"status":"success"}';
+            response()->json(["status"=>"success"]);
         }
         catch (Exception $exception){
 
             return response()->json([
-                'message' => 'Error deleting note',
+                'status' => 'Error deleting note',
             ], 500);
         }
 

@@ -27,22 +27,27 @@ app.controller('boardCtrl', function($scope,$http,$location,$window,$interval) {
     $scope.board = {};
     $scope.sections = [];
     $scope.noteInputs = [];
-    $scope.token = "";
 
     $scope.loadBoard = function(){
         $http.get($location.path()+".json")
             .then(function(response) {
                 $scope.board = response.data.board;
-                $scope.sections = response.data.sections;
+                $scope.sections = $scope.board.sections;
         });
     };
+
+    $scope.deleteBoard = function(){
+        $http.delete("boards/"+ $scope.board.id).then(function(response){
+        });
+    };
+
 
     $scope.getRows = function() {
         return Array(parseInt(($scope.sections.length+1)/2));
     }
 
     $scope.addNote = function(sectionIndex){
-        $http.post("notes/store.json",
+        $http.post("notes",
             {"section_id":$scope.sections[sectionIndex].id,
                 "message": $scope.noteInputs[sectionIndex]})
             .then(function(response) {
@@ -58,7 +63,7 @@ app.controller('boardCtrl', function($scope,$http,$location,$window,$interval) {
         if (messageIndex > -1 && sectionIndex > -1) {
             var note = $scope.sections[sectionIndex].notes[messageIndex];
             if(note){
-                $http.post("notes/destroy/"+note.id)
+                $http.delete("notes/"+note.id)
                     .then(function(response) {
                         $scope.loadBoard();
                     });

@@ -7,36 +7,67 @@
 @section('bodyContent')
         <div ng-controller="boardCtrl" id="app-description-area" class="col-xs-12 row text-center" data-ng-init="loadBoard()">
 
-        <div class="page-header text-center">
-            <h1>[[board.title]]</h1>
-        </div>
+            <div class="text-right">
+                <button title="Delete Board" class="btn btn-danger btn-md" data-toggle="modal" data-target="#confirmBoardDeleteModal">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i> Delete this Board
+                </button>
+            </div>
+            <div class="page-header text-center">
+                <h1>[[board.title]]</h1>
+            </div>
 
-        <div data-ng-repeat="row in getRows() track by $index" class="row">
-            <div data-ng-repeat="section in sections track by $index" data-ng-if="[[$index]] < [[($parent.$index+1)*2]] && [[$index]] >= [[$parent.$index*2]]"
-                 id="section[[$index]]" class="col-xs-12 col-md-6">
-                <h3>[[section.title]] </h3>
-                <div class="note-group">
-                    <div data-ng-repeat="note in section.notes track by $index" class="note-group-item text-left">
-                        <div class="row">
-                            <div class="list-group-item-text col-xs-11 note-group-item-text" data-ng-model="note[[$index]]">[[note.message]]</div>
-                            <div title="Delete Note" class="btn btn-danger btn-md col-xs-1" data-ng-click="deleteNote([[$parent.$index]],[[$index]])">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <div data-ng-repeat="row in getRows() track by $index" class="row">
+                <div data-ng-repeat="section in sections track by $index"
+                     data-ng-if="[[$index]] < [[($parent.$index+1)*2]] && [[$index]] >= [[$parent.$index*2]]"
+                     id="section[[$index]]" class="col-xs-12 col-md-6">
+                    <h3>[[section.title]] </h3>
+                    <div class="note-group">
+                        <div data-ng-repeat="note in section.notes track by $index" class="note-group-item text-left">
+                            <div class="row">
+                                <div class="list-group-item-text col-sm-11 col-xs-10 note-group-item-text"
+                                     data-ng-model="note[[$index]]">[[note.message]]</div>
+                                <div title="Delete Note" class="btn btn-danger btn-md col-sm-1 col-xs-2"
+                                     data-ng-click="deleteNote([[$parent.$index]],[[$index]])">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="note"  data-ng-model="noteInputs[ [[$index]] ]" data-ng-enter="addNote([[$index]])">
-                    <span class="input-group-btn">
-                            <button title="Add Note" class="btn btn-success" type="button"
-                                    data-ng-click="addNote([[$index]])" >
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </button>
-                        </span>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Enter a note"
+                               data-ng-model="noteInputs[ [[$index]] ]"
+                               data-ng-enter="addNote([[$index]])">
+                        <span class="input-group-btn">
+                                <button title="Add Note" class="btn btn-success" type="button"
+                                        data-ng-click="addNote([[$index]])" >
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </button>
+                            </span>
+                    </div>
                 </div>
             </div>
-        </div>
 
+            <!-- Delete Board Confirmation Modal -->
+            <div id="confirmBoardDeleteModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Delete Board</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete this board and all of it's contents?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" ng-click="deleteBoard()">Delete Board</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close Dialog</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
     </div>
 

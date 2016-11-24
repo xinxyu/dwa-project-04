@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Board;
 use App\Section;
 use App\Note;
-use Mockery\Matcher\Not;
+use Exception;
 
 class BoardController extends Controller
 {
@@ -43,16 +43,15 @@ class BoardController extends Controller
             'section.0' =>'required_without_all:section.*'
         ]);
 
-        /*
-         * Store sections and title of the board in the DB here
-         */
-
+        // create a new board and set the title as entered in the create form
         $board = new Board();
         $board->title = $request['boardTitle'];
         $board->save();
 
+
+        // create, name, and associate each section to the board just created
         foreach($request->get('section') as $sectionTitle){
-            // create sections from non-empty section titles
+            // ignore empty section titles
             if(strlen(trim($sectionTitle)) > 0){
                 $section = new Section();
                 $section->title = $sectionTitle;
@@ -61,10 +60,8 @@ class BoardController extends Controller
             }
         }
 
-
+        // redirect to the boards show route
         return redirect('boards/'.$board->id);
-
-
     }
 
     /**
@@ -75,31 +72,11 @@ class BoardController extends Controller
      */
     public function show($id)
     {
-
-        // find the board by id
-        $board = Board::find($id);
-
-        // get all sections of the board
-        $sections= Section::Where("board_id","=",$id)->get();
-
-        $section_ids = [];
-        foreach($sections as $section){
-            array_push($section_ids,$section->id);
-        }
-
-        // get all the notes from each section
-        $notes = Note::WhereIn("section_id", $section_ids)->get();
-        foreach($sections as $section){
-
-            $notesForSection = array_values($notes
-                ->filter(function($item) use($section) {return $item->section_id == $section->id;})
-                ->all());
-
-            $section["notes"] = $notesForSection;
-        }
+        // find the board by id and eager load all sections and notes
+        $board = Board::with('sections.notes')->find($id);
 
         // return the data as a JSON object
-        return '{"board":'.$board->toJSON().',"sections":'.$sections->toJSON().'}';
+        return response()->json(["board"=>$board]);
 
     }
 
@@ -111,32 +88,14 @@ class BoardController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showHTML($id){
-        return view('/boards/show');
+        $board = Board::find($id);
+        if($board)
+        {
+            return view('/boards/show');
+        }
+        return abort(404);
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -146,6 +105,19 @@ class BoardController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        try
+        {
+            $board = Board::find($id);
+            $board->delete();
+            response()->json(["status"=>"success"]);
+        }
+        catch (Exception $exception){
+
+            return response()->json([
+                'status' => 'Error deleting board',
+            ], 500);
+        }
+
     }
 }
