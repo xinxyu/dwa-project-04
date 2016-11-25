@@ -5,7 +5,7 @@
 @stop
 
 @section('bodyContent')
-        <div ng-controller="boardCtrl" id="app-description-area" class="col-xs-12 row text-center" data-ng-init="loadBoard()">
+        <div data-ng-controller="boardCtrl" id="app-description-area" class="col-xs-12 row text-center" data-ng-init="loadBoard()">
 
             <div class="text-right">
                 <button title="Delete Board" class="btn btn-danger btn-md" data-toggle="modal" data-target="#confirmBoardDeleteModal">
@@ -64,7 +64,7 @@
                             <p>Are you sure you want to delete this board and all of it's contents?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" ng-click="deleteBoard()">Delete Board</button>
+                            <button type="button" class="btn btn-danger" data-ng-click="deleteBoard()">Delete Board</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close Dialog</button>
                         </div>
                     </div>
