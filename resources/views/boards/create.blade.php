@@ -16,11 +16,11 @@
         <form class="text-left" method="post" action="/boards">
             {{ csrf_field() }}
             <div class="form-group col-md-8 col-xs-12 col-md-offset-2">
-                <label for="boardTitle">Title</label><span class="text-danger">*</span>
+                <label id="boardTitleLabel" for="boardTitle">Title</label><span class="text-danger">*</span>
                 <input type="text" class="form-control" id="boardTitle" name="boardTitle"
-                       aria-describedby="emailHelp"
+                       aria-describedby="boardTitleLabel"
                        placeholder="Enter title"
-                        value = "{{old("boardTitle","")}}">
+                        value = "{{old("boardTitle")}}">
                 <small id="boardTitleHelp" class="form-text">The name of your board</small>
                 @foreach ($errors->get("boardTitle") as $error)
                 <br/>
