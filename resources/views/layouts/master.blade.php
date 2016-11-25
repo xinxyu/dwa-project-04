@@ -38,7 +38,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li id="text-generator-nav-item"><a href="/login" target="_self">Login</a></li>
+                    <!-- <li id="text-generator-nav-item"><a href="/login" target="_self">Login</a></li> -->
                     <li id="board-nav-item"><a href="/boards/create" target="_self">Create Board</a></li>
                 </ul>
             </div><!--/.nav-collapse -->

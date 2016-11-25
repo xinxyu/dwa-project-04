@@ -5,7 +5,7 @@
 @stop
 
 @section('bodyContent')
-        <div data-ng-controller="boardCtrl" id="app-description-area" class="col-xs-12 row text-center" data-ng-init="loadBoard()">
+        <div data-ng-controller="boardCtrl" class="main-content-area" class="col-xs-12 row text-center" data-ng-init="loadBoard()">
 
             <div class="text-right">
                 <button title="Delete Board" class="btn btn-danger btn-md" data-toggle="modal" data-target="#confirmBoardDeleteModal">

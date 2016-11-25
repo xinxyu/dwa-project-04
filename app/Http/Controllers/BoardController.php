@@ -27,7 +27,8 @@ class BoardController extends Controller
      */
     public function create()
     {
-        return view('/boards/create');
+        $defaultValues = ["What Went Well","What Needs Improvement","Action Items","Other Comments"];
+        return view('/boards/create')->with(["defaultValues"=>$defaultValues]);
     }
 
     /**

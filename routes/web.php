@@ -37,6 +37,7 @@ Route::get('/boards/{boards}.json', 'BoardController@show')->name('boards.show')
 Route::get('/boards/{boards}', 'BoardController@showHTML')->name('boards.showHTML');
 Route::delete('/boards/{boards}', 'BoardController@destroy')->name('boards.destroy');
 
+
 /*
  * Note Routes
  */

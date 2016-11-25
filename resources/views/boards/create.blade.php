@@ -6,7 +6,7 @@
 
 
 @section('bodyContent')
-    <div id="app-description-area" class="col-xs-12 row text-center">
+    <div class="main-content-area" class="col-xs-12 row text-center">
         <div class="page-header text-center">
             <h1>Create Board</h1>
         </div>
@@ -38,30 +38,16 @@
                 @endforeach
             </div>
 
-            <div class="form-group col-md-4 col-xs-12 col-md-offset-2">
-                <label id="section1Label" for="section1Name">Section 1 Name</label>
-                <input type="text" class="form-control" id="section1Name" name="section[0]" aria-describedby="section1Name" placeholder="Enter name"
-                       onClick="this.setSelectionRange(0, this.value.length)"
-                       value="{{old("section.0","What Went Well")}}">
-            </div>
-            <div class="form-group col-md-4 col-xs-12">
-                <label id="section2Label" for="section2Name">Section 2 Name</label>
-                <input type="text" class="form-control" id="section2Name" name="section[1]" aria-describedby="section2Name" placeholder="Enter name"
-                       onClick="this.setSelectionRange(0, this.value.length)"
-                       value="{{old("section.1","What Needs Improvement")}}">
-            </div>
-            <div class="form-group col-md-4 col-xs-12 col-md-offset-2">
-                <label id="section3Label" for="section3Name">Section 3 Name</label>
-                <input type="text" class="form-control" id="section3Name" name="section[2]" aria-describedby="section3Name" placeholder="Enter name"
-                       onClick="this.setSelectionRange(0, this.value.length)"
-                       value="{{old("section.2","Action Items")}}">
-            </div>
-            <div class="form-group col-md-4 col-xs-12">
-                <label id="section4Label" for="section4Name">Section 4 Name</label>
-                <input type="text" class="form-control" id="section4Name" name="section[3]" aria-describedby="section4Name" placeholder="Enter name"
-                       onClick="this.setSelectionRange(0, this.value.length)"
-                       value="{{old("section.3","Other Comments")}}">
-            </div>
+            @for ($i = 0; $i < 4; $i++)
+                <div class="form-group col-md-4 col-xs-12 {{ $i%2 == 0 ? "col-md-offset-2" : ""}}">
+                    <label id="section{{$i+1}}Label" for="section1Name">Section {{$i+1}} Name</label>
+                    <input type="text" class="form-control" id="section{{$i+1}}Name" name="section[{{$i}}]"
+                           aria-describedby="section{{$i+1}}Name" placeholder="Enter name"
+                           onClick="this.setSelectionRange(0, this.value.length)"
+                           value="{{old("section.".$i,$defaultValues[$i])}}">
+                </div>
+            @endfor
+
             <div class="col-md-offset-4 col-md-4 col-xs-12">
                 <button type="submit" class="btn btn-default btn-primary col-xs-12">Create</button>
             </div>
