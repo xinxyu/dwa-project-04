@@ -9,7 +9,7 @@
 
             <div class="text-right">
                 <button title="Delete Board" class="btn btn-danger btn-md" data-toggle="modal" data-target="#confirmBoardDeleteModal">
-                    <i class="fa fa-trash-o" aria-hidden="true"></i> Delete this Board
+                    <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Board
                 </button>
                 <button title="Refresh Board" class="btn btn-primary btn-md" data-ng-click="loadBoard()">
                     <i class="fa fa-refresh" aria-hidden="true"></i> Refresh Board
