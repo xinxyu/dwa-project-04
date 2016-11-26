@@ -38,6 +38,12 @@ app.controller('boardCtrl', function($scope,$http,$location,$window,$interval) {
 
     $scope.deleteBoard = function(){
         $http.delete("boards/"+ $scope.board.id).then(function(response){
+            $window.location.href = "boards/deleted";
+            /*
+            if(response.status == 200){
+
+            }*/
+
         });
     };
 

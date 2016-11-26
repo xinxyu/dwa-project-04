@@ -13,14 +13,8 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}"/>
-        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}"/>
 
         <!-- Javascript -->
-        <script rel="text/javascript" src="{{ asset('js/jquery.min.js')}}"></script>
-        <script rel="text/javascript" src="{{ asset('js/angular.min.js')}}"></script>
-        <script rel="text/javascript" src="{{ asset('js/bootstrap.min.js')}}"></script>
-        <script rel="text/javascript" src="{{ asset('js/nav.js')}}"></script>
-        <script rel="text/javascript" src="{{ asset('js/main.js')}}"></script>
         @yield('headContent')
     </head>
     <body data-ng-app="retroBoardApp">

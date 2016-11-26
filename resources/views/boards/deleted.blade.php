@@ -1,17 +1,17 @@
-@extends('layouts.error')
+@extends('layouts.master')
 
 @section('title')
-    Site Unavailable | Retro Board
+    Board Deleted | Retro Board
 @stop
 
 
 @section('bodyContent')
     <div class="main-content-area" class="col-xs-12 row text-center">
         <div class="page-header text-center">
-            <h1>Site Unavailable</h1>
+            <h1>Board Deleted</h1>
         </div>
         <div class="lead text-center">
-            <p>Sorry, we're down at the moment, please try again later.</p>
+            <p>Your board has been successfully deleted. Create another board <a href="/boards/create" target="_self">here</a>.</p>
         </div>
 
     </div>

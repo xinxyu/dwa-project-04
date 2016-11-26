@@ -32,6 +32,7 @@ Route::get('/logout', function () {
  */
 
 Route::get('/boards/create', 'BoardController@create')->name('boards.create');
+Route::get('/boards/deleted', function(){return view('boards.deleted');})->name('boards.deleted');
 Route::post('/boards', 'BoardController@store')->name('boards.store');
 Route::get('/boards/{boards}.json', 'BoardController@show')->name('boards.show');
 Route::get('/boards/{boards}', 'BoardController@showHTML')->name('boards.showHTML');

@@ -11,7 +11,7 @@
             <a href="http://searchsoftwarequality.techtarget.com/definition/Agile-retrospective" target="_blank">retrospectives</a>.
         </p>
         <p class="lead">
-            <a href="/boards/create" target="_self"><button class="btn btn-primary btn-md" >Start a Board</button></a>
+            <a href="/boards/create" target="_self"><button class="btn btn-primary btn-md" >Create a Board</button></a>
         </p>
     </div>
 
