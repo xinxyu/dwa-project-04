@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotesTable extends Migration
+class ConnectSectionsAndNotes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,13 @@ class CreateNotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('notes', function (Blueprint $table) {
+        Schema::table('notes', function (Blueprint $table) {
 
+            # fk fields
+            $table->integer('section_id')->unsigned();
 
-            $table->increments('id');
-
-            # This generates two columns: `created_at` and `updated_at` to
-            # keep track of changes to a row
-            $table->timestamps();
-
-            # The rest of the fields...
-            $table->string('message');
-            $table->unsignedInteger('votes')->default(0);
-
-
-
+            # This field 'section_id' is a foreign key that connects to the 'id' field in the 'sections' table
+            $table->foreign('section_id')->references('id')->on('sections');
         });
     }
 
@@ -45,7 +37,5 @@ class CreateNotesTable extends Migration
 
             $table->dropColumn('section_id');
         });
-
-        Schema::drop('notes');
     }
 }

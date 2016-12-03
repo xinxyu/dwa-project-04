@@ -22,11 +22,7 @@ class CreateSectionsTable extends Migration
             # content fields
             $table->string('title');
 
-            # fk fields
-            $table->integer('board_id')->unsigned();
 
-            # This field 'board_id' is a foreign key that connects to the 'id' field in the 'boards' table
-            $table->foreign('board_id')->references('id')->on('boards');
 
 
 
@@ -40,14 +36,7 @@ class CreateSectionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('sections', function (Blueprint $table) {
 
-
-            $table->dropForeign('sections_board_id_foreign');
-
-            $table->dropColumn('board_id');
-
-        });
 
         Schema::drop('sections');
     }

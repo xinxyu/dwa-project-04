@@ -23,6 +23,23 @@ app.directive('ngEnter', function () {
     };
 });
 
+app.directive('bsPopover', ['$timeout', function($timeout) {
+    return function(scope, element, attrs) {
+
+        var popBtns = element.find("button[rel=popover]");
+        popBtns.popover({ placement: 'left', html: 'false', trigger:'focus click',
+            template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'});
+
+        popBtns.on('shown.bs.popover click',function(){
+            $timeout(function(){
+                popBtns.popover('hide');
+                popBtns.blur();
+            }, 1000);
+        });
+
+    };
+}]);
+
 app.controller('boardCtrl', function($scope,$http,$location,$window,$interval) {
     $scope.board = {};
     $scope.sections = [];
@@ -39,18 +56,13 @@ app.controller('boardCtrl', function($scope,$http,$location,$window,$interval) {
     $scope.deleteBoard = function(){
         $http.delete("boards/"+ $scope.board.id).then(function(response){
             $window.location.href = "boards/deleted";
-            /*
-            if(response.status == 200){
-
-            }*/
-
         });
     };
 
 
     $scope.getRows = function() {
         return Array(parseInt(($scope.sections.length+1)/2));
-    }
+    };
 
     $scope.addNote = function(sectionIndex){
         $http.post("notes",
@@ -63,7 +75,7 @@ app.controller('boardCtrl', function($scope,$http,$location,$window,$interval) {
         // clear input field
         $scope.noteInputs[sectionIndex] = "";
         return;
-    }
+    };
 
     $scope.deleteNote = function(sectionIndex,messageIndex){
         if (messageIndex > -1 && sectionIndex > -1) {
@@ -77,7 +89,21 @@ app.controller('boardCtrl', function($scope,$http,$location,$window,$interval) {
 
         }
         return;
-    }
+    };
+
+    $scope.upVoteNote = function(sectionIndex,messageIndex){
+        if (messageIndex > -1 && sectionIndex > -1) {
+            var note = $scope.sections[sectionIndex].notes[messageIndex];
+            if(note){
+                $http.put("notes/"+note.id)
+                    .then(function(response) {
+                        $scope.loadBoard();
+                    });
+            }
+
+        }
+        return;
+    };
 
     $interval(function(){$scope.loadBoard();},20000);
 

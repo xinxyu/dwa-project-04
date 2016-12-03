@@ -111,7 +111,7 @@ class BoardController extends Controller
         {
             $board = Board::find($id);
             $board->delete();
-            response()->json(["status"=>"success"]);
+            response()->json(["status"=>"Success"]);
         }
         catch (Exception $exception){
 

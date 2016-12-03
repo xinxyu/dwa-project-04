@@ -3,4 +3,5 @@ $(document).ready(function(){
     if(route === "/boards/create") {
         $("#board-nav-item").addClass("active");
     }
+
 });

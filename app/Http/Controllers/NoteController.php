@@ -47,7 +47,7 @@ class NoteController extends Controller
         {
             $note = Note::find($id);
             $note->delete();
-            response()->json(["status"=>"success"]);
+            response()->json(["status"=>"Success"]);
         }
         catch (Exception $exception){
 
@@ -56,5 +56,29 @@ class NoteController extends Controller
             ], 500);
         }
 
+    }
+
+
+    /**
+     * Update a note by id
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update($id)
+    {
+        try
+        {
+            $note = Note::find($id);
+            $note->votes += 1;
+            $note->save();
+            response()->json(["status"=>"Success"]);
+        }
+        catch (Exception $exception){
+
+            return response()->json([
+                'status' => 'Error deleting note',
+            ], 500);
+        }
     }
 }

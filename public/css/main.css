@@ -15,14 +15,19 @@ body {
     padding-bottom: 10px;
 }
 
+
 .note-group-item{
-    padding-left: 10px;
-    padding-right: 14px;
+    padding-left: 15px;
+    padding-right: 15px;
     background-color:#4e5d6c;
     border-bottom: 1px solid #ebebeb;
     word-wrap: break-word;
-
 }
+
+.note-group-item-last{
+    border-bottom: none;
+}
+
 .note-group-item-text{
     padding-top:10px;
     padding-bottom:10px;

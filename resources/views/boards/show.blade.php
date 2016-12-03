@@ -4,6 +4,9 @@
     Board | Retro Board
 @stop
 
+@section('headContent')
+
+@stop
 @section('bodyContent')
         <div data-ng-controller="boardCtrl" class="main-content-area" class="col-xs-12 row text-center" data-ng-init="loadBoard()">
 
@@ -25,9 +28,17 @@
                      id="section[[$index]]" class="col-xs-12 col-md-6">
                     <h3>[[section.title]] </h3>
                     <div class="note-group">
-                        <div data-ng-repeat="note in section.notes track by $index" class="note-group-item text-left">
-                            <div class="row">
-                                <div class="list-group-item-text col-sm-11 col-xs-10 note-group-item-text"
+                        <div data-ng-repeat="note in section.notes track by $index" class="note-group-item text-left" ng-class="{'note-group-item-last':$last}" bs-popover>
+                            <div class="row" >
+                                <button title="Up Vote" class="voteButton btn btn-primary btn-md col-sm-2 col-xs-2"
+                                     data-ng-click="upVoteNote([[$parent.$index]],[[$index]])"
+                                        rel="popover"
+                                        data-content="Voted!">
+                                    <i class="fa fa-thumbs-up" aria-hidden="true">
+                                    </i>
+                                    &nbsp;<span class="badge">[[note.votes]]</span>
+                                </button>
+                                <div class="list-group-item-text col-sm-9 col-xs-8 note-group-item-text"
                                      data-ng-model="note[[$index]]">[[note.message]]</div>
                                 <div title="Delete Note" class="btn btn-danger btn-md col-sm-1 col-xs-2"
                                      data-ng-click="deleteNote([[$parent.$index]],[[$index]])">
@@ -73,5 +84,6 @@
             </div>
 
     </div>
+
 
 @stop
