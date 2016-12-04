@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Board;
 use App\Section;
 use App\Note;
+use App\User;
 use Exception;
 
 class BoardController extends Controller
@@ -15,10 +16,15 @@ class BoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = User::with('boards')->find($request->user()->id);
+        $boards = $user->boards()->get();
+
+        return view('/boards/index')->with(["boards"=>$boards]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -39,6 +45,7 @@ class BoardController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request,[
             'boardTitle' => 'required',
             'section.0' =>'required_without_all:section.*'
@@ -47,6 +54,7 @@ class BoardController extends Controller
         // create a new board and set the title as entered in the create form
         $board = new Board();
         $board->title = $request['boardTitle'];
+        $board->user_id = $request->user()->id;
         $board->save();
 
 
@@ -106,7 +114,6 @@ class BoardController extends Controller
      */
     public function destroy($id)
     {
-
         try
         {
             $board = Board::find($id);

@@ -4,16 +4,15 @@
     Board | Retro Board
 @stop
 
-@section('headContent')
-
-@stop
 @section('bodyContent')
-        <div data-ng-controller="boardCtrl" class="main-content-area" class="col-xs-12 row text-center" data-ng-init="loadBoard()">
+        <div data-ng-controller="boardCtrl" class="main-content-area" class="col-xs-12 row text-center" data-ng-init="loadBoard()" ng-cloak>
 
             <div class="text-right">
+                @if(Auth::check())
                 <button title="Delete Board" class="btn btn-danger btn-md" data-toggle="modal" data-target="#confirmBoardDeleteModal">
                     <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Board
                 </button>
+                @endif
                 <button title="Refresh Board" class="btn btn-primary btn-md" data-ng-click="loadBoard()">
                     <i class="fa fa-refresh" aria-hidden="true"></i> Refresh Board
                 </button>

@@ -37,9 +37,40 @@
                         <a class="navbar-brand" href="/" target="_self">Retro Board</a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
+                        @if (Auth::check())
                         <ul class="nav navbar-nav">
-                            <!-- <li id="text-generator-nav-item"><a href="/login" target="_self">Login</a></li> -->
+                            <li id="my-boards-nav-item"><a href="/boards" target="_self">My Boards</a></li>
                             <li id="board-nav-item"><a href="/boards/create" target="_self">Create a Board</a></li>
+                        </ul>
+                        @endif
+
+                        <!-- Right Side Of Navbar -->
+                        <ul class="nav navbar-nav navbar-right">
+                            <!-- Authentication Links -->
+                            @if (Auth::guest())
+                                <li id="login-nav-item"><a href="{{ url('/login') }}" target="_self">Login</a></li>
+                                <li id="register-nav-item"><a href="{{ url('/register') }}" target="_self">Register</a></li>
+                            @else
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="{{ url('/logout') }}"
+                                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                Logout
+                                            </a>
+
+                                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endif
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>

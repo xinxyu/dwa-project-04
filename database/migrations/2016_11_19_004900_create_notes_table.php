@@ -26,8 +26,6 @@ class CreateNotesTable extends Migration
             $table->string('message');
             $table->unsignedInteger('votes')->default(0);
 
-
-
         });
     }
 
@@ -38,14 +36,6 @@ class CreateNotesTable extends Migration
      */
     public function down()
     {
-        Schema::table('notes', function (Blueprint $table) {
-
-
-            $table->dropForeign('notes_section_id_foreign');
-
-            $table->dropColumn('section_id');
-        });
-
         Schema::drop('notes');
     }
 }

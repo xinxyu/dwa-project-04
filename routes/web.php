@@ -19,13 +19,9 @@ Route::get('/', function () {
 /*
  * Authentication Routes
  */
-Route::get('/login', function () {
-    return "Login Page";
-});
+Auth::routes();
 
-Route::get('/logout', function () {
-    return "Logout Page";
-});
+Route::get('/home', 'HomeController@index');
 
 /*
  * Board Routes
@@ -35,11 +31,12 @@ Route::get('/logout', function () {
 Route::get('/boards/deleted', function(){return view('boards.deleted');})->name('boards.deleted');
 
 // crud operations
-Route::get('/boards/create', 'BoardController@create')->name('boards.create');
-Route::post('/boards', 'BoardController@store')->name('boards.store');
+Route::get('/boards', 'BoardController@index')->name('boards.index')->middleware('auth');
+Route::get('/boards/create', 'BoardController@create')->name('boards.create')->middleware('auth');
+Route::post('/boards', 'BoardController@store')->name('boards.store')->middleware('auth');
 Route::get('/boards/{boards}.json', 'BoardController@show')->name('boards.show');
 Route::get('/boards/{boards}', 'BoardController@showHTML')->name('boards.showHTML');
-Route::delete('/boards/{boards}', 'BoardController@destroy')->name('boards.destroy');
+Route::delete('/boards/{boards}', 'BoardController@destroy')->name('boards.destroy')->middleware('auth');
 
 
 /*
@@ -50,7 +47,6 @@ Route::delete('/boards/{boards}', 'BoardController@destroy')->name('boards.destr
 Route::post('/notes', 'NoteController@store')->name('notes.store');
 Route::delete('/notes/{note}', 'NoteController@destroy')->name('notes.destroy');
 Route::put('/notes/{note}', 'NoteController@update')->name('notes.update');
-
 
 
 

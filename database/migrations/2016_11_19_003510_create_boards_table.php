@@ -26,6 +26,7 @@ class CreateBoardsTable extends Migration
             $table->string('title');
 
 
+
         });
 
     }

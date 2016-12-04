@@ -1,4 +1,4 @@
-@extends('layouts.error')
+@extends('layouts.master')
 
 @section('title')
     Page Not Found | Retro Board

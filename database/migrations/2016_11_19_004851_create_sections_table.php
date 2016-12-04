@@ -22,10 +22,6 @@ class CreateSectionsTable extends Migration
             # content fields
             $table->string('title');
 
-
-
-
-
         });
     }
 
@@ -36,8 +32,6 @@ class CreateSectionsTable extends Migration
      */
     public function down()
     {
-
-
         Schema::drop('sections');
     }
 }

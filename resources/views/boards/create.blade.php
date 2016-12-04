@@ -15,7 +15,7 @@
         </div><br/><br/>
         <form class="text-left" method="post" action="/boards">
             {{ csrf_field() }}
-            <div class="form-group col-md-8 col-xs-12 col-md-offset-2">
+            <div class="form-group col-md-8 col-xs-12 col-md-offset-2{{ $errors->has('boardTitle') ? ' has-error' : '' }}">
                 <label id="boardTitleLabel" for="boardTitle">Title</label><span class="text-danger">*</span>
                 <input type="text" class="form-control" id="boardTitle" name="boardTitle"
                        aria-describedby="boardTitleLabel"
@@ -39,7 +39,7 @@
             </div>
 
             @for ($i = 0; $i < 4; $i++)
-                <div class="form-group col-md-4 col-xs-12 {{ $i%2 == 0 ? "col-md-offset-2" : ""}}">
+                <div class="form-group col-md-4 col-xs-12{{ $i%2 == 0 ? " col-md-offset-2" : ""}} {{ $i==0 && $errors->has('section.0') ? ' has-error' : '' }}">
                     <label id="section{{$i+1}}Label" for="section1Name">Section {{$i+1}} Name</label>
                     <input type="text" class="form-control" id="section{{$i+1}}Name" name="section[{{$i}}]"
                            aria-describedby="section{{$i+1}}Name" placeholder="Enter name"
