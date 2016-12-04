@@ -23,6 +23,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/user/activation/{token}', 'Auth\RegisterController@activateUser')->name('user.activate');
+
 /*
  * Board Routes
  */
