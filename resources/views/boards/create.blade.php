@@ -6,53 +6,66 @@
 
 
 @section('bodyContent')
-    <div class="main-content-area" class="col-xs-12 row text-center">
-        <div class="page-header text-center">
-            <h1>Create Board</h1>
-        </div>
-        <div class="col-md-4 col-xs-12 col-md-offset-2 text-left">
-            <span class="text-danger">*</span><small id="formHelp" class="form-text text-left"> fields are required</small>
-        </div><br/><br/>
-        <form class="text-left" method="post" action="/boards">
-            {{ csrf_field() }}
-            <div class="form-group col-md-8 col-xs-12 col-md-offset-2{{ $errors->has('boardTitle') ? ' has-error' : '' }}">
-                <label id="boardTitleLabel" for="boardTitle">Title</label><span class="text-danger">*</span>
-                <input type="text" class="form-control" id="boardTitle" name="boardTitle"
-                       aria-describedby="boardTitleLabel"
-                       placeholder="Enter title"
-                        value = "{{old("boardTitle")}}">
-                <small id="boardTitleHelp" class="form-text">The name of your board</small>
-                @foreach ($errors->get("boardTitle") as $error)
-                <br/>
-                <small class="text-danger">{{ $error }}</small>
-                @endforeach
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Create a Board</div>
+                <div class="panel-body">
 
-            </div>
-
-            <div class="form-group col-md-8 col-xs-12 col-md-offset-2">
-                <fieldset>Sections<span class="text-danger">*</span></fieldset>
-                <small id="sectionTitleHelp" class="form-text">Name each section on the board.</small>
-                @foreach ($errors->get("section.0") as $error)
+                    <div class="col-md-4 col-xs-12 text-left">
+                        <span class="text-danger">*</span><small id="formHelp" class="form-text text-left"> fields are required</small>
+                    </div>
                     <br/>
-                    <small class="text-danger">{{ $error }}</small>
-                @endforeach
-            </div>
-
-            @for ($i = 0; $i < 4; $i++)
-                <div class="form-group col-md-4 col-xs-12{{ $i%2 == 0 ? " col-md-offset-2" : ""}} {{ $i==0 && $errors->has('section.0') ? ' has-error' : '' }}">
-                    <label id="section{{$i+1}}Label" for="section1Name">Section {{$i+1}} Name</label>
-                    <input type="text" class="form-control" id="section{{$i+1}}Name" name="section[{{$i}}]"
-                           aria-describedby="section{{$i+1}}Name" placeholder="Enter name"
-                           onClick="this.setSelectionRange(0, this.value.length)"
-                           value="{{old("section.".$i,$defaultValues[$i])}}">
+                    <br/>
+                    <form class="form-horizontal" method="post" action="/boards">
+                    {{ csrf_field() }}
+                <div class="form-group{{ $errors->has('boardTitle') ? ' has-error' : '' }}">
+                    <label id="boardTitleLabel" class="col-md-4 control-label" for="boardTitle">Board Title<span class="text-danger">*</span></label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="boardTitle" name="boardTitle"
+                               aria-describedby="boardTitleLabel"
+                               placeholder="Enter title"
+                                value = "{{old("boardTitle")}}" required autofocus>
+                        @if($errors->get("boardTitle"))
+                        <span class="help-block">
+                        @foreach ($errors->get("boardTitle") as $error)
+                            <strong>{{ $error }}</strong>
+                        @endforeach
+                        </span>
+                        @endif
+                    </div>
                 </div>
-            @endfor
+                @for ($i = 0; $i < 4; $i++)
+                <div class="form-group {{ $i==0 && $errors->has('section.0') ? ' has-error' : '' }}">
+                    <label id="section{{$i+1}}Label" class="col-md-4 control-label" for="section1Name">
+                        Section {{$i+1}} Name @if($i==0)<span class="text-danger">*</span>@endif
+                    </label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="section{{$i+1}}Name" name="section[{{$i}}]"
+                               aria-describedby="section{{$i+1}}Name" placeholder="Enter name"
+                               onClick="this.setSelectionRange(0, this.value.length)"
+                               value="{{old("section.".$i,$defaultValues[$i])}}" {{$i==0 ? "required": ""}}>
+                        @if($i==0 && $errors->get("section.0"))
+                            <span class="help-block">
+                        @foreach ($errors->get("section.0") as $error)
+                                <strong>{{ $error }}</strong>
+                                @endforeach
+                            </span>
+                        @endif
+                    </div>
+                </div>
+                @endfor
 
-            <div class="col-md-offset-4 col-md-4 col-xs-12">
-                <button type="submit" class="btn btn-default btn-primary col-xs-12">Create</button>
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-4">
+                        <button type="submit" class="btn btn-default btn-primary">Create</button>
+                    </div>
+                </div>
+
+            </form>
+                </div>
             </div>
-
-        </form>
+        </div>
     </div>
 
 @stop
