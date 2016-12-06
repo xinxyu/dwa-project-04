@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => 'RetroBoard@xinxiongyu.com',
-        'name' => 'RetroBoard',
+        'name' => 'Retro Board',
     ],
 
     /*

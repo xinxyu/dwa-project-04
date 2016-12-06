@@ -56,7 +56,7 @@ $style = [
 
     'button--green' => 'background-color: #22BC66;',
     'button--red' => 'background-color: #dc4d2f;',
-    'button--blue' => 'background-color: #3869D4;',
+    'button--orange' => 'background-color: #bf5a16;',
 ];
 ?>
 
@@ -116,7 +116,7 @@ $style = [
                                                             $actionColor = 'button--red';
                                                             break;
                                                         default:
-                                                            $actionColor = 'button--blue';
+                                                            $actionColor = 'button--orange';
                                                     }
                                                     ?>
 
