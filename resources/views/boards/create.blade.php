@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Create Board | Retro Board
+    Create a Board | Retro Board
 @stop
 
 

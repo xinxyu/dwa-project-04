@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    Reset Password | Retro Board
+@stop
+
 @section('bodyContent')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

@@ -41,7 +41,7 @@ class ActivationService
                 "outroLines"=>["Please ignore this email if you did not register."],
                 "actionUrl"=>$link],
             function (Message $m) use ($user) {
-                $m->to($user->email)->subject('Activation mail');
+                $m->to($user->email)->subject('Retro Board Confirmation');
         });
 
     }

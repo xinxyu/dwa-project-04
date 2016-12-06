@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Board Index | Retro Board
+    My Boards | Retro Board
 @stop
 
 
