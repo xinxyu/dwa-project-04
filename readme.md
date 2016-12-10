@@ -15,6 +15,7 @@ Other basic features implemented include:
 * Authentication required for creation/deletion of boards
 * Email confirmation to activate account after registration
 * Forgot password functionality
+* Customized error pages
 
 ## Demo
 <https://www.screencast.com/t/D4JesY47BhO>
