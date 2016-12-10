@@ -10,8 +10,14 @@ The boards can be edited and viewed publicly by anyone. A guest or user editing 
 any section of the board as well as up-vote notes that they deem important. 
 All updates and changes to the board are synchronized between users seamlessly so multiple people can collaborate on a single board simultaneously.
 
+Other basic features implemented include:
+* Automatic reloading front-end
+* Authentication required for creation/deletion of boards
+* Email confirmation to activate account after registration
+* Forgot password functionality
+
 ## Demo
-<http://www.screencast.com/t/usg7VKyoS6>
+<https://www.screencast.com/t/D4JesY47BhO>
 
 ## Outside code and resources
 * Angular 1.0: <https://github.com/angular/angular.js>
