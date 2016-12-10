@@ -16,6 +16,7 @@ Other basic features implemented include:
 * Email confirmation to activate account after registration
 * Forgot password functionality
 * Customized error pages
+* Responsive design
 
 ## Demo
 <https://www.screencast.com/t/D4JesY47BhO>

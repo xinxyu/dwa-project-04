@@ -28,7 +28,7 @@ app.directive('bsPopover', ['$timeout', function($timeout) {
     return function(scope, element, attrs) {
 
         var popBtns = element.find("button[rel=popover]");
-        popBtns.popover({ placement: 'left', html: 'false', trigger:'focus click',
+        popBtns.popover({ placement: 'top', html: 'false', trigger:'focus click',
             template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'});
 
         // hide popover after 1 second
