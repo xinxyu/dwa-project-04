@@ -84,7 +84,7 @@ class BoardController extends Controller
         // find the board by id and eager load all sections and notes
         $board = Board::with('sections.notes')->find($id);
 
-        // return the data as a JSON object
+        // return the data as a JSON object so Angular front-end can consume
         return response()->json(["board"=>$board]);
 
     }
@@ -102,6 +102,7 @@ class BoardController extends Controller
         {
             return view('/boards/show');
         }
+        // send to 404 page if board does not exist
         return abort(404);
     }
 

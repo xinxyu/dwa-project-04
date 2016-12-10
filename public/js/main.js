@@ -7,7 +7,7 @@ var app = angular.module('retroBoardApp', []).config( function($interpolateProvi
 
 
 
-
+// directive for executing a function after the "enter" key is pressed
 app.directive('ngEnter', function () {
     return function (scope, element, attrs) {
         element.bind("keyup", function (event) {
@@ -23,6 +23,7 @@ app.directive('ngEnter', function () {
     };
 });
 
+// create a directive for adding popovers to up-vote icons
 app.directive('bsPopover', ['$timeout', function($timeout) {
     return function(scope, element, attrs) {
 
@@ -30,6 +31,7 @@ app.directive('bsPopover', ['$timeout', function($timeout) {
         popBtns.popover({ placement: 'left', html: 'false', trigger:'focus click',
             template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'});
 
+        // hide popover after 1 second
         popBtns.on('shown.bs.popover click',function(){
             $timeout(function(){
                 popBtns.popover('hide');
@@ -45,6 +47,7 @@ app.controller('boardCtrl', function($scope,$http,$location,$window,$interval) {
     $scope.sections = [];
     $scope.noteInputs = [];
 
+    // reload JSON for board
     $scope.loadBoard = function(){
         $http.get($location.path()+".json")
             .then(function(response) {
@@ -72,7 +75,7 @@ app.controller('boardCtrl', function($scope,$http,$location,$window,$interval) {
                 $scope.loadBoard();
             });
 
-        // clear input field
+        // clear input field after adding a note
         $scope.noteInputs[sectionIndex] = "";
         return;
     };
@@ -105,6 +108,7 @@ app.controller('boardCtrl', function($scope,$http,$location,$window,$interval) {
         return;
     };
 
-    $interval(function(){$scope.loadBoard();},20000);
+    // refresh board every 10 seconds
+    $interval(function(){$scope.loadBoard();},10000);
 
 });
