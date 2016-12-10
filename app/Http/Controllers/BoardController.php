@@ -8,6 +8,7 @@ use App\Section;
 use App\Note;
 use App\User;
 use Exception;
+use Validator;
 
 class BoardController extends Controller
 {
@@ -46,10 +47,22 @@ class BoardController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request,[
+        // custom field names
+        $niceNames = array(
+            'section.0' => 'section 1 name',
+            'section.1' => 'section 2 name',
+            'section.2' => 'section 3 name',
+            'section.3' => 'section 4 name'
+        );
+
+        $validator = Validator::make($request->all(),[
             'boardTitle' => 'required',
-            'section.0' =>'required_without_all:section.*'
+            'section.0' =>'required_without_all:section.1,section.2,section.3'
         ]);
+        $validator->setAttributeNames($niceNames);
+
+        $validator->validate();
+
 
         // create a new board and set the title as entered in the create form
         $board = new Board();
@@ -70,7 +83,7 @@ class BoardController extends Controller
         }
 
         // redirect to the boards show route
-        return redirect('boards/'.$board->id);
+        return redirect(route('boards.showHTML',$board->id));
     }
 
     /**

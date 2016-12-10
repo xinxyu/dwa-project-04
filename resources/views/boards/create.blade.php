@@ -44,7 +44,7 @@
                         <input type="text" class="form-control" id="section{{$i+1}}Name" name="section[{{$i}}]"
                                aria-describedby="section{{$i+1}}Name" placeholder="Enter name"
                                onClick="this.setSelectionRange(0, this.value.length)"
-                               value="{{old("section.".$i,$defaultValues[$i])}}" {{$i==0 ? "required": ""}}>
+                               value="{{old("section.".$i,$defaultValues[$i])}}" >
                         @if($i==0 && $errors->get("section.0"))
                             <span class="help-block">
                         @foreach ($errors->get("section.0") as $error)

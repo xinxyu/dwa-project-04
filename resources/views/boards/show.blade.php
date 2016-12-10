@@ -71,7 +71,7 @@
                             <h4 class="modal-title">Delete Board</h4>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to delete this board and all of it's contents?</p>
+                            <p>Are you sure you want to delete this board and all of its contents?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-ng-click="deleteBoard()">Delete Board</button>
