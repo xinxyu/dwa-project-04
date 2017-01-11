@@ -21,6 +21,7 @@
         <script rel="text/javascript" src="{{ asset('js/bootstrap.min.js')}}"></script>
         <script rel="text/javascript" src="{{ asset('js/nav.js')}}"></script>
         <script rel="text/javascript" src="{{ asset('js/main.js')}}"></script>
+
         @yield('headContent')
     </head>
     <body data-ng-app="retroBoardApp">

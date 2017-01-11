@@ -4,17 +4,25 @@
     Board | Retro Board
 @stop
 
+@section('headContent')
+    <!-- Page Specific Styles -->
+    <link rel="stylesheet"  href="{{ asset('css/print.css')}}" media="print">
+@stop
+
 @section('bodyContent')
         <div data-ng-controller="boardCtrl" class="main-content-area" class="col-xs-12 row text-center" data-ng-init="loadBoard()" ng-cloak>
 
             <div class="text-right">
                 @if($ownsBoard)
-                <button title="Delete Board" class="btn btn-danger btn-md" data-toggle="modal" data-target="#confirmBoardDeleteModal">
-                    <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Board
+                <button title="Delete Board" class="btn btn-danger btn-md board-buttons" data-toggle="modal" data-target="#confirmBoardDeleteModal">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
                 </button>
                 @endif
-                <button title="Refresh Board" class="btn btn-primary btn-md" data-ng-click="loadBoard()">
-                    <i class="fa fa-refresh" aria-hidden="true"></i> Refresh Board
+                <button title="Print Board" class="btn btn-primary btn-md board-buttons" onclick="window.print()">
+                    <i class="fa fa-print" aria-hidden="true"></i> Print
+                </button>
+                <button title="Refresh Board" class="btn btn-primary btn-md board-buttons" data-ng-click="loadBoard()">
+                    <i class="fa fa-refresh" aria-hidden="true"></i> Refresh
                 </button>
             </div>
             <div class="page-header text-center">
@@ -37,9 +45,9 @@
                                     </i>
                                     &nbsp;<span class="badge">[[note.votes]]</span>
                                 </button>
-                                <div class="list-group-item-text col-sm-9 col-xs-8 note-group-item-text"
+                                <div class="list-group-item-text col-sm-9 col-xs-8 col-print-10 note-group-item-text"
                                      data-ng-model="note[[$index]]">[[note.message]]</div>
-                                <div title="Delete Note" class="btn btn-danger btn-md col-sm-1 col-xs-2"
+                                <div title="Delete Note" class="btn btn-danger btn-md col-sm-1 col-xs-2 delete-note-button"
                                      data-ng-click="deleteNote([[$parent.$index]],[[$index]])">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </div>
