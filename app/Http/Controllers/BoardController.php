@@ -109,11 +109,12 @@ class BoardController extends Controller
      * @param int $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showHTML($id){
+    public function showHTML(Request $request, $id){
         $board = Board::find($id);
         if($board)
         {
-            return view('/boards/show');
+            $ownsBoard = $request->user() && ($request->user()->id == $board->user->id);
+            return view('/boards/show')->with("ownsBoard",$ownsBoard);
         }
         // send to 404 page if board does not exist
         return abort(404);
@@ -126,13 +127,23 @@ class BoardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         try
         {
             $board = Board::find($id);
-            $board->delete();
-            response()->json(["status"=>"Success"]);
+
+            if($request->user() && ($request->user()->id == $board->user->id))
+            {
+                $board->delete();
+                return response()->json([
+                    'status' => 'Success',
+                ]);
+            }
+            return response()->json([
+                'status' => 'Error deleting board',
+            ], 500);
+
         }
         catch (Exception $exception){
 

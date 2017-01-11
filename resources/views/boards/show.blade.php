@@ -8,7 +8,7 @@
         <div data-ng-controller="boardCtrl" class="main-content-area" class="col-xs-12 row text-center" data-ng-init="loadBoard()" ng-cloak>
 
             <div class="text-right">
-                @if(Auth::check())
+                @if($ownsBoard)
                 <button title="Delete Board" class="btn btn-danger btn-md" data-toggle="modal" data-target="#confirmBoardDeleteModal">
                     <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Board
                 </button>
