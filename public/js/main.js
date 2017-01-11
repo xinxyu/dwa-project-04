@@ -71,7 +71,10 @@ app.controller('boardCtrl', function ($scope, $http, $location, $window, $interv
 
     $scope.addNote = function (sectionIndex) {
 
-        if ($scope.noteInputs[sectionIndex] != "") {
+        if ($scope.noteInputs[sectionIndex] === "" || $scope.noteInputs[sectionIndex] === undefined ) {
+            return;
+        }
+        else {
             $http.post("notes",
                 {
                     "section_id": $scope.sections[sectionIndex].id,
@@ -81,10 +84,11 @@ app.controller('boardCtrl', function ($scope, $http, $location, $window, $interv
                     $scope.loadBoard();
                 });
 
+
+            // clear input field after adding a note
+            $scope.noteInputs[sectionIndex] = "";
+            return;
         }
-        // clear input field after adding a note
-        $scope.noteInputs[sectionIndex] = "";
-        return;
     };
 
     $scope.deleteNote = function (sectionIndex, messageIndex) {
