@@ -1,6 +1,6 @@
-$(document).ready(function(){
+$(document).ready(function () {
     var route = window.location.pathname;
-    switch(route) {
+    switch (route) {
         case "/boards":
             $("#my-boards-nav-item").addClass("active");
             break;
