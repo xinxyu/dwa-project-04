@@ -6,15 +6,7 @@
         font-size: 16pt;
     }
 
-    .board-buttons {
-        display: none;
-    }
-
-    .input-group {
-        display: none;
-    }
-
-    .delete-note-button {
+    .board-buttons, .input-group, .delete-note-button {
         display: none;
     }
 
@@ -22,7 +14,12 @@
         min-width: 65vw;
     }
 
-    .voteButton .badge{
+    .note-group-item {
+        border-bottom: 1px solid black;
+        page-break-inside: avoid;
+    }
+
+    .voteButton .badge {
         font-size: 16pt;
     }
 

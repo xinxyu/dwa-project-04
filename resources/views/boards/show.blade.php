@@ -29,7 +29,7 @@
                 <h1>[[board.title]]</h1>
             </div>
 
-            <div data-ng-repeat="row in getRows() track by $index" class="row note-row">
+            <div data-ng-repeat="row in getRows() track by $index" class="row">
                 <div data-ng-repeat="section in sections track by $index"
                      data-ng-if="[[$index]] < [[($parent.$index+1)*2]] && [[$index]] >= [[$parent.$index*2]]"
                      id="section[[$index]]" class="col-xs-12 col-md-6">
