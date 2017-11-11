@@ -46,7 +46,7 @@
                                     &nbsp;<span class="badge">[[note.votes]]</span>
                                 </button>
                                 <div class="list-group-item-text col-sm-9 col-xs-8 col-print-10 note-group-item-text"
-                                     data-ng-model="note[[$index]]">[[note.message]]</div>
+                                     data-ng-model="note[[$index]]">[[$index+1]]. [[note.message]]</div>
                                 <div title="Delete Note" class="btn btn-danger btn-md col-sm-1 col-xs-2 delete-note-button"
                                      data-ng-click="deleteNote([[$parent.$index]],[[$index]])">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
