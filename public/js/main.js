@@ -93,8 +93,8 @@ app.controller('boardCtrl', function ($scope, $http, $location, $window, $interv
         }
     };
 
-    $scope.deleteNote = function (sectionIndex, noteId) {
-        if (noteId > -1 && sectionIndex > -1) {
+    $scope.deleteNote = function (noteId) {
+        if (noteId > -1) {
             $http.delete("notes/" + noteId)
                 .then(function (response) {
                     $scope.loadBoard();
@@ -103,8 +103,8 @@ app.controller('boardCtrl', function ($scope, $http, $location, $window, $interv
         return;
     };
 
-    $scope.upVoteNote = function (sectionIndex, noteId) {
-        if (noteId > -1 && sectionIndex > -1) {
+    $scope.upVoteNote = function (noteId) {
+        if (noteId > -1) {
             $http.put("notes/" + noteId)
                 .then(function (response) {
                     $scope.loadBoard();

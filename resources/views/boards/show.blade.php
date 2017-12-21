@@ -45,7 +45,7 @@
                         <div data-ng-repeat="note in section.notes | orderBy:order " class="note-group-item text-left" ng-class="{'note-group-item-last':$last}" bs-popover>
                             <div class="row" >
                                 <button title="Up Vote" class="voteButton btn btn-primary btn-md col-sm-2 col-xs-2"
-                                     data-ng-click="upVoteNote([[$parent.$index]],[[note.id]])"
+                                     data-ng-click="upVoteNote([[note.id]])"
                                         rel="popover"
                                         data-content="Voted!">
                                     <i class="fa fa-thumbs-up" aria-hidden="true">
@@ -55,7 +55,7 @@
                                 <div class="list-group-item-text col-sm-9 col-xs-8 col-print-10 note-group-item-text"
                                      data-ng-model="note[[$index]]">[[$index+1]]. [[note.message]]</div>
                                 <div title="Delete Note" class="btn btn-danger btn-md col-sm-1 col-xs-2 delete-note-button"
-                                     data-ng-click="deleteNote([[$parent.$index]],[[note.id]])">
+                                     data-ng-click="deleteNote([[note.id]])">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </div>
                             </div>
