@@ -31,7 +31,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dd-sort">
                         <li><a data-ng-click="setSort('-votes','Votes')">Votes</a></li>
-                        <li><a data-ng-click="setSort('message','Message')">Messages</a></li>
+                        <li><a data-ng-click="setSort('message','Messages')">Messages</a></li>
                         <li><a data-ng-click="setSort('id','Nothing')">Nothing</a></li>
                     </ul>
                 </div>
