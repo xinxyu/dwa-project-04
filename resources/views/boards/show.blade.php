@@ -27,12 +27,12 @@
             <div class="text-right">
                 <div id="dd-sort-container" class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dd-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Sort By &nbsp;&nbsp;<span class="caret"></span>
+                        Sorted on [[orderText]]&nbsp;&nbsp;<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dd-sort">
-                        <li><a data-ng-click="setSort('-votes')">Votes</a></li>
-                        <li><a data-ng-click="setSort('message')">Message</a></li>
-                        <li><a data-ng-click="setSort('id')">Nothing</a></li>
+                        <li><a data-ng-click="setSort('-votes','Votes')">Votes</a></li>
+                        <li><a data-ng-click="setSort('message','Message')">Messages</a></li>
+                        <li><a data-ng-click="setSort('id','Nothing')">Nothing</a></li>
                     </ul>
                 </div>
             </div>

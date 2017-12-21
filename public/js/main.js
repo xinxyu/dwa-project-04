@@ -47,6 +47,7 @@ app.controller('boardCtrl', function ($scope, $http, $location, $window, $interv
     $scope.sections = [];
     $scope.noteInputs = [];
     $scope.order = "id";
+    $scope.orderText = "Nothing";
 
     // reload JSON for board
     $scope.loadBoard = function () {
@@ -112,8 +113,9 @@ app.controller('boardCtrl', function ($scope, $http, $location, $window, $interv
         return;
     };
 
-    $scope.setSort = function(order){
+    $scope.setSort = function(order,orderText){
         $scope.order = order;
+        $scope.orderText = orderText
     }
 
     // refresh board every 10 seconds
