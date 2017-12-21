@@ -46,6 +46,7 @@ app.controller('boardCtrl', function ($scope, $http, $location, $window, $interv
     $scope.board = {};
     $scope.sections = [];
     $scope.noteInputs = [];
+    $scope.order = "id";
 
     // reload JSON for board
     $scope.loadBoard = function () {
@@ -91,33 +92,29 @@ app.controller('boardCtrl', function ($scope, $http, $location, $window, $interv
         }
     };
 
-    $scope.deleteNote = function (sectionIndex, messageIndex) {
-        if (messageIndex > -1 && sectionIndex > -1) {
-            var note = $scope.sections[sectionIndex].notes[messageIndex];
-            if (note) {
-                $http.delete("notes/" + note.id)
-                    .then(function (response) {
-                        $scope.loadBoard();
-                    });
-            }
-
+    $scope.deleteNote = function (sectionIndex, noteId) {
+        if (noteId > -1 && sectionIndex > -1) {
+            $http.delete("notes/" + noteId)
+                .then(function (response) {
+                    $scope.loadBoard();
+                });
         }
         return;
     };
 
-    $scope.upVoteNote = function (sectionIndex, messageIndex) {
-        if (messageIndex > -1 && sectionIndex > -1) {
-            var note = $scope.sections[sectionIndex].notes[messageIndex];
-            if (note) {
-                $http.put("notes/" + note.id)
-                    .then(function (response) {
-                        $scope.loadBoard();
-                    });
-            }
-
+    $scope.upVoteNote = function (sectionIndex, noteId) {
+        if (noteId > -1 && sectionIndex > -1) {
+            $http.put("notes/" + noteId)
+                .then(function (response) {
+                    $scope.loadBoard();
+                });
         }
         return;
     };
+
+    $scope.setSort = function(order){
+        $scope.order = order;
+    }
 
     // refresh board every 10 seconds
     $interval(function () {
